@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 public class Rq {
-    HttpServletRequest req;
-    HttpServletResponse resp;
+    private final HttpServletRequest req;
+    private final HttpServletResponse resp;
 
-    Rq(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+    public Rq(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
         this.req = req;
         this.resp = resp;
 
