@@ -20,11 +20,11 @@ public class DispatchServlet extends HttpServlet {
         MemberController memberController = new MemberController();
 
         String url = req.getRequestURI();
-        System.out.println(url);
 
         switch (url) {
             case "/usr/member/login" -> memberController.showLogin(rq);
             case "/usr/article/list/free" -> articleController.showList(rq);
+            case "/usr/article/write/free" -> articleController.showWrite(rq);
         }
 
     }
