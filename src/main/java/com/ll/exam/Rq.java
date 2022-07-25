@@ -10,12 +10,16 @@ public class Rq {
     private final HttpServletRequest req;
     private final HttpServletResponse resp;
 
-    public Rq(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+    public Rq(HttpServletRequest req, HttpServletResponse resp) {
         this.req = req;
         this.resp = resp;
 
         // 인코딩도 Rq 생성자에서 호출
-        this.req.setCharacterEncoding("UTF-8");
+        try {
+            req.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
         this.resp.setCharacterEncoding("UTF-8");
         this.resp.setContentType("text/html; charset=utf-8");
     }
@@ -31,7 +35,11 @@ public class Rq {
         }
     }
 
-    public void appendBody(String formatted) throws IOException {
-        resp.getWriter().append(formatted);
+    public void appendBody(String str) throws IOException {
+        try {
+            resp.getWriter().append(str);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
