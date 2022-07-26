@@ -23,4 +23,12 @@ public class ArticleController {
     public void showWrite(Rq rq) {
         rq.view("usr/article/write");
     }
+
+    public void doWrite(Rq rq) throws IOException {
+        String title = rq.getParam("title", "");
+        String body = rq.getParam("body","");
+
+        rq.appendBody("<div>title : %s</div>".formatted(title));
+        rq.appendBody("<div>body : %s</div>".formatted(body));
+    }
 }
