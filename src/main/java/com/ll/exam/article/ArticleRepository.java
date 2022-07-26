@@ -20,4 +20,8 @@ public class ArticleRepository {
         articleDtos.add(newDto);
         return lastId;
     }
+
+    public List<ArticleDto> findAll() {
+        return articleDtos;
+    }
 }
