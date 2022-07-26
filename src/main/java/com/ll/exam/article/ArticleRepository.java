@@ -24,4 +24,13 @@ public class ArticleRepository {
     public List<ArticleDto> findAll() {
         return articleDtos;
     }
+
+    public ArticleDto findById(long id) {
+        for (ArticleDto article : articleDtos){
+            if (article.getId() == id){
+                return article;
+            }
+        }
+        return null;
+    }
 }

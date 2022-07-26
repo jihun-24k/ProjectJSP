@@ -32,4 +32,12 @@ public class ArticleController {
         long id = articleService.write(title, body);
         rq.appendBody("%d번 게시물이 생성 되었습니다.".formatted(id));
     }
+
+    public void showDetail(Rq rq) {
+        long id = 1;
+        ArticleDto findDto = articleService.findById(id);
+
+        rq.setAtt("article",findDto);
+        rq.view("usr/article/detail");
+    }
 }
