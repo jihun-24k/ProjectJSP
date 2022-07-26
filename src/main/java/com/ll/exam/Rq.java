@@ -75,4 +75,10 @@ public class Rq {
             return defaultValue;
         return paramName;
     }
+
+    public String getActionPath() {
+        String[] urlBits = getPath().split("/");
+
+        return "/%s/%s/%s".formatted(urlBits[1],urlBits[2],urlBits[3]);
+    }
 }
