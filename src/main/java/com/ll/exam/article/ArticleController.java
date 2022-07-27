@@ -29,21 +29,21 @@ public class ArticleController {
         String body = rq.getParam("body","");
 
         long id = articleService.write(title, body);
-        rq.appendBody("%d번 게시물이 생성 되었습니다.".formatted(id));
+        rq.print("%d번 게시물이 생성 되었습니다.".formatted(id));
     }
 
     public void showDetail(Rq rq) throws IOException {
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
-            rq.appendBody("번호를 입력해주세요.");
+            rq.print("번호를 입력해주세요.");
             return;
         }
 
         ArticleDto findDto = articleService.findById(id);
 
         if (findDto == null) {
-            rq.appendBody("해당 글이 존재하지 않습니다.");
+            rq.print("해당 글이 존재하지 않습니다.");
             return;
         }
         rq.setAtt("article",findDto);
@@ -61,14 +61,14 @@ public class ArticleController {
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
-            rq.appendBody("번호를 입력해주세요.");
+            rq.print("번호를 입력해주세요.");
             return;
         }
 
         ArticleDto modifyDto = articleService.findById(id);
 
         if (modifyDto == null) {
-            rq.appendBody("해당 글이 존재하지 않습니다.");
+            rq.print("해당 글이 존재하지 않습니다.");
             return;
         }
         rq.setAtt("article",modifyDto);
@@ -81,6 +81,6 @@ public class ArticleController {
         String body = rq.getParam("body","");
 
         articleService.modify(id,title, body);
-        rq.appendBody("%d번 게시물이 수정 되었습니다.".formatted(id));
+        rq.print("%d번 게시물이 수정 되었습니다.".formatted(id));
     }
 }

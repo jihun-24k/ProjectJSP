@@ -17,10 +17,10 @@ public class GugudanServlet extends HttpServlet {
         int dan = rq.getIntParam("dan", 0);
         int limit = rq.getIntParam("limit", 0);
 
-        rq.appendBody("<h1>%d단</h1>\n".formatted(dan));
+        rq.print("<h1>%d단</h1>\n".formatted(dan));
 
         for (int i = 1; i <= limit; i++) {
-            rq.appendBody("<div>%d * %d = %d</div>\n".formatted(dan, i, dan * i));
+            rq.print("<div>%d * %d = %d</div>\n".formatted(dan, i, dan * i));
         }
     }
 }

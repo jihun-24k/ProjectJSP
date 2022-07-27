@@ -37,12 +37,15 @@ public class Rq {
         }
     }
 
-    public void appendBody(String str) throws IOException {
+    public void print(String str) throws IOException {
         try {
             resp.getWriter().append(str);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void println(String str) throws IOException {
+        print(str+"\n");
     }
 
     public void setAtt(String name, Object value){
