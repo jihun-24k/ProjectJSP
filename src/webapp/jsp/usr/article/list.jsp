@@ -10,14 +10,16 @@ List<ArticleDto> articles = (List<ArticleDto>)request.getAttribute("articles");
     <div class="container px-3 mx-auto">
         <h1 class="font-bold text-lg">게시물 리스트</h1>
 
-        <ul class ="mt-5">
-             <% for ( ArticleDto article : articles ) { %>
-             <li class ="flex">
-                <a href="/usr/article/detail/free/<%=article.getId()%>" class="flex-grow w-[40px] hover:underline hover:text-[red]"><%=article.getId()%>. <%=article.getTitle()%></a>
-                <a href="/usr/article/modify/free/<%=article.getId()%>" class=" hover:underline hover:text-[red] mr-2"><input type="button" value="수정" /></a>
-                <a href="/usr/article/delete/free/<%=article.getId()%>" class="flex-grow hover:underline hover:text-[red]"><input type="button" value="삭제" /></a>
-             </li>
-             <% } %>
+        <ul class="mt-5">
+                    <% for ( ArticleDto article : articles ) { %>
+                    <li class="flex">
+                        <a class="w-[40px] hover:underline hover:text-[red]" href="/usr/article/detail/free/<%=article.getId()%>"><%=article.getId()%>. </a>
+                        <!-- flex-grow : 성장성 1 -->
+                        <a class="flex-grow hover:underline hover:text-[red]" href="/usr/article/detail/free/<%=article.getId()%>"><%=article.getTitle()%></a>
+                        <a class="hover:underline hover:text-[red] mr-2" href="/usr/article/modify/free/<%=article.getId()%>">수정</a>
+                        <a onclick="if ( !confirm('정말로 삭제하시겠습니까?') ) return false;" class="hover:underline hover:text-[red] mr-2" href="/usr/article/delete/free/<%=article.getId()%>">삭제</a>
+                    </li>
+                    <% } %>
         </ul>
     </div>
 </section>
