@@ -17,6 +17,14 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/apache-jstl -->
+        <!-- jstl dependency -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>apache-jstl</artifactId>
+            <version>11.0.0</version>
+        </dependency>
+
         <!--Lombok dependency-->
         <dependency>
             <groupId>org.projectlombok</groupId>
