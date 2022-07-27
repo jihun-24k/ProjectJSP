@@ -4,6 +4,7 @@ import com.ll.exam.article.dto.ArticleDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class ArticleRepository {
     private static List<ArticleDto> articleDtos;
@@ -12,20 +13,28 @@ public class ArticleRepository {
     static {
         articleDtos = new ArrayList<>();
         lastId = 0;
+        makeTestData();
+    }
+    private static void makeTestData() {
+        IntStream.rangeClosed(1, 10).forEach(id -> {
+            String title = "제목%d".formatted(id);
+            String body = "내용%d".formatted(id);
+            write(title, body);
+        });
     }
 
-    public long write(String title, String body) {
+    public static long write(String title, String body) {
         long id  = ++lastId;
         ArticleDto newDto = new ArticleDto(id,title,body);
         articleDtos.add(newDto);
         return id;
     }
 
-    public List<ArticleDto> findAll() {
+    public static List<ArticleDto> findAll() {
         return articleDtos;
     }
 
-    public ArticleDto findById(long id) {
+    public static ArticleDto findById(long id) {
         for (ArticleDto article : articleDtos){
             if (article.getId() == id){
                 return article;
@@ -34,12 +43,12 @@ public class ArticleRepository {
         return null;
     }
 
-    public void delete(long id) {
+    public static void delete(long id) {
         ArticleDto removeDto = findById(id);
         articleDtos.remove(removeDto);
     }
 
-    public void modify(long id, String title, String body) {
+    public static void modify(long id, String title, String body) {
         ArticleDto modifyDto = findById(id);
         modifyDto.setTitle(title);
         modifyDto.setBody(body);
