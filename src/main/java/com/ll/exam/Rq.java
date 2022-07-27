@@ -73,12 +73,36 @@ public class Rq {
         String value = req.getParameter(paramName);
         if (paramName == null || value.trim().length() == 0)
             return defaultValue;
-        return paramName;
+        return value;
     }
 
     public String getActionPath() {
         String[] urlBits = getPath().split("/");
 
         return "/%s/%s/%s".formatted(urlBits[1],urlBits[2],urlBits[3]);
+    }
+
+    public long getLongPathValueByIndex(int idx, int defaultValue) {
+        String value = getPathValueByIndex(idx,null);
+
+        if (value == null){
+            return defaultValue;
+        }
+
+        try{
+            return Long.parseLong(value);
+        }
+        catch (NumberFormatException e){
+            return defaultValue;
+        }
+    }
+
+    public String getPathValueByIndex(int idx, String defaultValue){
+        String[] urlBits = getPath().split("/");
+        try{
+            return urlBits[4+idx];
+        }catch (ArrayIndexOutOfBoundsException e){
+            return defaultValue;
+        }
     }
 }

@@ -33,10 +33,20 @@ public class ArticleController {
         rq.appendBody("%d번 게시물이 생성 되었습니다.".formatted(id));
     }
 
-    public void showDetail(Rq rq) {
-        long id = 1;
+    public void showDetail(Rq rq) throws IOException {
+        long id = rq.getLongPathValueByIndex(1, 0);
+
+        if (id == 0) {
+            rq.appendBody("번호를 입력해주세요.");
+            return;
+        }
+
         ArticleDto findDto = articleService.findById(id);
 
+        if (findDto == null) {
+            rq.appendBody("해당 글이 존재하지 않습니다.");
+            return;
+        }
         rq.setAtt("article",findDto);
         rq.view("usr/article/detail");
     }

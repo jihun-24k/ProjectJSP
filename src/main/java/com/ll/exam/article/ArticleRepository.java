@@ -15,10 +15,10 @@ public class ArticleRepository {
     }
 
     public long write(String title, String body) {
-        lastId++;
-        ArticleDto newDto = new ArticleDto(lastId,title,body);
+        long id  = ++lastId;
+        ArticleDto newDto = new ArticleDto(id,title,body);
         articleDtos.add(newDto);
-        return lastId;
+        return id;
     }
 
     public List<ArticleDto> findAll() {
