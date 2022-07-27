@@ -45,7 +45,7 @@
             <div class ="flex gap-3 mt-3">
                 <span>수정</span>
                 <div>
-                    <input class="hover:underline hover:text-[red] cursor-pointer" type="submit" value="수정" />
+                    <button class="hover:bg-[blue] bg-[#F8F8F8] p-[8px_15px_5px_15px] rounded-[25px] hover:text-white"><input type="submit" value="수정" /></button>
                 </div>
             </div>
         </form>
