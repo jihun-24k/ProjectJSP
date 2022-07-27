@@ -55,4 +55,18 @@ public class ArticleController {
         articleService.delete(id);
         showList(rq);
     }
+
+
+    public void showModify(Rq rq) {
+        rq.view("usr/article/modify");
+    }
+
+    public void doModify(Rq rq) throws IOException {
+        long id = rq.getLongPathValueByIndex(1, 0);
+        String title = rq.getParam("title", "");
+        String body = rq.getParam("body","");
+
+        articleService.modify(id,title, body);
+        rq.appendBody("%d번 게시물이 수정 되었습니다.".formatted(id));
+    }
 }

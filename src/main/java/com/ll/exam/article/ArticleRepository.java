@@ -38,4 +38,10 @@ public class ArticleRepository {
         ArticleDto removeDto = findById(id);
         articleDtos.remove(removeDto);
     }
+
+    public void modify(long id, String title, String body) {
+        ArticleDto modifyDto = findById(id);
+        modifyDto.setTitle(title);
+        modifyDto.setBody(body);
+    }
 }
