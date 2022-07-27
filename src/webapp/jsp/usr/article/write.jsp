@@ -20,7 +20,7 @@
 </script>
 
 <section>
-    <div class="container px-3 mx-auto">
+    <div class="container px-3 mx-auto mt-5">
         <h1 class="font-bold text-lg">게시물 작성</h1>
          <form method="POST"  onsubmit="ArticleSave__submitForm(this); return false;">
              <div class="flex gap-3 mt-3">

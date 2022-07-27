@@ -2,7 +2,7 @@
 <%@ include file="../common/head.jspf"%>
 
 <section>
-    <div class="container px-3 mx-auto">
+    <div class="container px-3 mx-auto mt-5">
         <h1 class="font-bold text-lg">게시물 상세페이지</h1>
 
         <div>
