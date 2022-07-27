@@ -33,4 +33,9 @@ public class ArticleRepository {
         }
         return null;
     }
+
+    public void delete(long id) {
+        ArticleDto removeDto = findById(id);
+        articleDtos.remove(removeDto);
+    }
 }

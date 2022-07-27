@@ -1,7 +1,6 @@
 package com.ll.exam.article;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.ll.exam.Rq;
@@ -49,5 +48,11 @@ public class ArticleController {
         }
         rq.setAtt("article",findDto);
         rq.view("usr/article/detail");
+    }
+
+    public void showDelete(Rq rq) throws IOException {
+        long id = rq.getLongPathValueByIndex(1, 0);
+        articleService.delete(id);
+        showList(rq);
     }
 }
