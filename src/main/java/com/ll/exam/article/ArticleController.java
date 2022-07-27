@@ -57,7 +57,21 @@ public class ArticleController {
     }
 
 
-    public void showModify(Rq rq) {
+    public void showModify(Rq rq) throws IOException {
+        long id = rq.getLongPathValueByIndex(1, 0);
+
+        if (id == 0) {
+            rq.appendBody("번호를 입력해주세요.");
+            return;
+        }
+
+        ArticleDto modifyDto = articleService.findById(id);
+
+        if (modifyDto == null) {
+            rq.appendBody("해당 글이 존재하지 않습니다.");
+            return;
+        }
+        rq.setAtt("article",modifyDto);
         rq.view("usr/article/modify");
     }
 
