@@ -95,7 +95,7 @@ public class AppTest {
 
     @Test
     void mapOfTest(){
-        Map<String, Object> map = Ut.json.mapOf("age", 11, "name", "Paul");
+        Map<String, Object> map = Ut.mapOf("age", 11, "name", "Paul");
 
         assertThat(map.get("age")).isEqualTo(11);
         assertThat(map.get("name")).isEqualTo("Paul");

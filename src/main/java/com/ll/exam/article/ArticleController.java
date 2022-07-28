@@ -6,8 +6,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ll.exam.ResultData;
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
+import com.ll.exam.util.Ut;
 
 public class ArticleController {
     private ArticleService articleService;
@@ -99,12 +101,7 @@ public class ArticleController {
 
     public void getArticles(Rq rq) throws IOException {
         List<ArticleDto> listDtos = articleService.findAll();
-        Map<String, Object> resultData = new LinkedHashMap<>();
-
-        resultData.put("resultCode","S-1");
-        resultData.put("msg","200");
-        resultData.put("datum",listDtos);
-
-        rq.json(listDtos);
+        ResultData<List<ArticleDto>> resultData = new ResultData("성공", "S-1", listDtos);
+        rq.json(resultData);
     }
 }

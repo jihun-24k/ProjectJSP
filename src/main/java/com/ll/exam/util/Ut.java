@@ -9,6 +9,17 @@ import java.util.List;
 import java.util.Map;
 
 public class Ut {
+    public static Map<String, Object> mapOf(Object... args) {
+        Map<String, Object> map = new LinkedHashMap<>();
+
+        for (int i = 0; i<args.length; i+=2){
+            String key = (String)args[i];
+            Object value = args[i+1];
+
+            map.put(key,value);
+        }
+        return map;
+    }
 
     public static class json {
         private static final ObjectMapper om;
@@ -41,16 +52,5 @@ public class Ut {
             }
         }
 
-        public static Map<String, Object> mapOf(Object... args) {
-            Map<String, Object> map = new LinkedHashMap<>();
-
-            for (int i = 0; i<args.length; i+=2){
-                String key = (String)args[i];
-                Object value = args[i+1];
-
-                map.put(key,value);
-            }
-            return map;
-        }
     }
 }
