@@ -5,10 +5,7 @@ import com.ll.exam.util.Ut;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -94,5 +91,13 @@ public class AppTest {
         }, null);
 
         assertThat(articleDtoMap).isEqualTo(articleDtosFromJson);
+    }
+
+    @Test
+    void mapOfTest(){
+        Map<String, Object> map = Ut.json.mapOf("age", 11, "name", "Paul");
+
+        assertThat(map.get("age")).isEqualTo(11);
+        assertThat(map.get("name")).isEqualTo("Paul");
     }
 }

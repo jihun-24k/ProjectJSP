@@ -1,7 +1,10 @@
 package com.ll.exam.article;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
@@ -96,6 +99,12 @@ public class ArticleController {
 
     public void getArticles(Rq rq) throws IOException {
         List<ArticleDto> listDtos = articleService.findAll();
+        Map<String, Object> resultData = new LinkedHashMap<>();
+
+        resultData.put("resultCode","S-1");
+        resultData.put("msg","200");
+        resultData.put("datum",listDtos);
+
         rq.json(listDtos);
     }
 }
