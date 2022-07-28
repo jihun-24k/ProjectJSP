@@ -95,10 +95,8 @@ public class ArticleController {
         rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 수정되었습니다.".formatted(id));
     }
 
-    public void showArticles(Rq rq) {
+    public void showArticles(Rq rq) throws IOException {
         List<ArticleDto> listDtos = articleService.findAll();
-        String jsonStr = Ut.json.toStr(listDtos,null);
-        rq.setAtt("articles",jsonStr);
-        rq.view("/usr/article/getArticles");
+        rq.json(listDtos);
     }
 }
