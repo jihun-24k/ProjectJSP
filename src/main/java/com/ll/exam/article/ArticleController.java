@@ -18,7 +18,7 @@ public class ArticleController {
         articleService = new ArticleService();
     }
 
-    public void showList(Rq rq) throws IOException {
+    public void showList(Rq rq){
         List<ArticleDto> listDtos = articleService.findAll();
 
         rq.setAtt("articles", listDtos);
@@ -29,7 +29,7 @@ public class ArticleController {
         rq.view("usr/article/write");
     }
 
-    public void doWrite(Rq rq) throws IOException {
+    public void doWrite(Rq rq){
         String title = rq.getParam("title", "");
         String body = rq.getParam("body","");
 
@@ -37,7 +37,7 @@ public class ArticleController {
         rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 생성 되었습니다.".formatted(id));
     }
 
-    public void showDetail(Rq rq) throws IOException {
+    public void showDetail(Rq rq){
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
@@ -55,7 +55,7 @@ public class ArticleController {
         rq.view("usr/article/detail");
     }
 
-    public void showDelete(Rq rq) throws IOException {
+    public void showDelete(Rq rq){
         long id = rq.getLongPathValueByIndex(1, 0);
         if (id == 0) {
             rq.println("번호를 입력해주세요.");
@@ -72,7 +72,7 @@ public class ArticleController {
     }
 
 
-    public void showModify(Rq rq) throws IOException {
+    public void showModify(Rq rq){
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
@@ -90,7 +90,7 @@ public class ArticleController {
         rq.view("usr/article/modify");
     }
 
-    public void doModify(Rq rq) throws IOException {
+    public void doModify(Rq rq){
         long id = rq.getLongPathValueByIndex(1, 0);
         String title = rq.getParam("title", "");
         String body = rq.getParam("body","");
@@ -99,9 +99,8 @@ public class ArticleController {
         rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 수정되었습니다.".formatted(id));
     }
 
-    public void getArticles(Rq rq) throws IOException {
+    public void getArticles(Rq rq){
         List<ArticleDto> listDtos = articleService.findAll();
-        ResultData<List<ArticleDto>> resultData = new ResultData("성공", "S-1", listDtos);
-        rq.json(resultData);
+        rq.successJson(listDtos);
     }
 }
