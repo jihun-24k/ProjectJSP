@@ -28,4 +28,14 @@ public class AppTest {
                  {"id":1,"title":"제목","body":"내용"}
                  """.trim());
     }
+
+    @Test
+    void objectMapper_JsonStrToObjTest(){
+        ArticleDto articleDto = new ArticleDto(1,"제목","내용");
+        String jsonStr = Ut.json.toStr(articleDto, "");
+
+        ArticleDto articleDtoFromJson = (ArticleDto) Ut.json.toObj(jsonStr, ArticleDto.class, null);
+
+        assertThat(articleDto).isEqualTo(articleDtoFromJson);
+    }
 }
