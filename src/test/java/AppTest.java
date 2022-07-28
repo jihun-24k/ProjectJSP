@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.util.Ut;
