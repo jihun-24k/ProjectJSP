@@ -66,4 +66,18 @@ public class AppTest {
                 {"young":{"id":2,"title":"제목2","body":"내용2"},"old":{"id":1,"title":"제목1","body":"내용1"}}
                 """.trim()).isEqualTo(jsonStr);
     }
+
+    @Test
+    void objectMapper_jsonStrToArticleDtoList(){
+        List<ArticleDto> articleDtoList = new ArrayList<>();
+        articleDtoList.add(new ArticleDto(1,"제목1","내용1"));
+        articleDtoList.add(new ArticleDto(2,"제목2","내용2"));
+
+        String jsonStr = Ut.json.toStr(articleDtoList, "");
+
+        List<ArticleDto> articleDtosFromJson = Ut.json.toObj(jsonStr, new TypeReference<>() {
+        }, null);
+
+        assertThat(articleDtoList).isEqualTo(articleDtosFromJson);
+    }
 }
