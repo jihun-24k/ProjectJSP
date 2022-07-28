@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
-import com.ll.exam.util.Ut;
 
 public class ArticleController {
     private ArticleService articleService;
@@ -95,7 +94,7 @@ public class ArticleController {
         rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 수정되었습니다.".formatted(id));
     }
 
-    public void showArticles(Rq rq) throws IOException {
+    public void getArticles(Rq rq) throws IOException {
         List<ArticleDto> listDtos = articleService.findAll();
         rq.json(listDtos);
     }
