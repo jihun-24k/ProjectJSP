@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
+import com.ll.exam.util.Ut;
 
 public class ArticleController {
     private ArticleService articleService;
@@ -92,5 +93,12 @@ public class ArticleController {
 
         articleService.modify(id,title, body);
         rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 수정되었습니다.".formatted(id));
+    }
+
+    public void showArticles(Rq rq) {
+        List<ArticleDto> listDtos = articleService.findAll();
+        String jsonStr = Ut.json.toStr(listDtos,null);
+        rq.setAtt("articles",jsonStr);
+        rq.view("/usr/article/getArticles");
     }
 }
