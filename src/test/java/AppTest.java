@@ -4,6 +4,11 @@ import com.ll.exam.util.Ut;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -37,5 +42,28 @@ public class AppTest {
         ArticleDto articleDtoFromJson = Ut.json.toObj(jsonStr, ArticleDto.class, null);
 
         assertThat(articleDto).isEqualTo(articleDtoFromJson);
+    }
+
+    @Test
+    void objectMapper_listToJsonStrTest(){
+        List<ArticleDto> articleDtoList = new ArrayList<>();
+        articleDtoList.add(new ArticleDto(1,"제목1","내용1"));
+        articleDtoList.add(new ArticleDto(2,"제목2","내용2"));
+
+        String jsonStr = Ut.json.toStr(articleDtoList, "");
+        assertThat("""
+                [{"id":1,"title":"제목1","body":"내용1"},{"id":2,"title":"제목2","body":"내용2"}]
+                """.trim()).isEqualTo(jsonStr);
+    }
+    @Test
+    void objectMapper_mapToJsonStrTest(){
+        Map<String, ArticleDto> articleDtoMap = new HashMap<>();
+        articleDtoMap.put("old",new ArticleDto(1,"제목1","내용1"));
+        articleDtoMap.put("young",new ArticleDto(2,"제목2","내용2"));
+
+        String jsonStr = Ut.json.toStr(articleDtoMap,"");
+        assertThat("""
+                {"young":{"id":2,"title":"제목2","body":"내용2"},"old":{"id":1,"title":"제목1","body":"내용1"}}
+                """.trim()).isEqualTo(jsonStr);
     }
 }
