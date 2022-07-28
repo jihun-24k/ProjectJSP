@@ -29,7 +29,7 @@ public class ArticleController {
         String body = rq.getParam("body","");
 
         long id = articleService.write(title, body);
-        rq.print("%d번 게시물이 생성 되었습니다.".formatted(id));
+        rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 생성 되었습니다.".formatted(id));
     }
 
     public void showDetail(Rq rq) throws IOException {
@@ -52,8 +52,18 @@ public class ArticleController {
 
     public void showDelete(Rq rq) throws IOException {
         long id = rq.getLongPathValueByIndex(1, 0);
+        if (id == 0) {
+            rq.println("번호를 입력해주세요.");
+            return;
+        }
+        ArticleDto articleDto = articleService.findById(id);
+        if (articleDto == null) {
+            rq.println("해당 글이 존재하지 않습니다.");
+            return;
+        }
+
         articleService.delete(id);
-        showList(rq);
+        rq.replace("/usr/article/list/free", "%d번 게시물이 삭제되었습니다.".formatted(id));
     }
 
 
@@ -81,6 +91,6 @@ public class ArticleController {
         String body = rq.getParam("body","");
 
         articleService.modify(id,title, body);
-        rq.print("%d번 게시물이 수정 되었습니다.".formatted(id));
+        rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 수정되었습니다.".formatted(id));
     }
 }
