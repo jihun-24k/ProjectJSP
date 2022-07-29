@@ -1,15 +1,8 @@
 package com.ll.exam.article;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-
-import com.ll.exam.ResultData;
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
-import com.ll.exam.util.Ut;
 
 public class ArticleController {
     private ArticleService articleService;
@@ -113,7 +106,16 @@ public class ArticleController {
     }
 
     public void getArticles(Rq rq){
-        List<ArticleDto> listDtos = articleService.findAll();
+        long fromId = rq.getLongParam("fromId", -1);
+
+        List<ArticleDto> listDtos = null;
+
+        if ( fromId == -1 ) {
+            listDtos = articleService.findAll();
+        }
+        else {
+            listDtos = articleService.findIdGreaterThan(fromId);
+        }
         rq.successJson(listDtos);
     }
 }

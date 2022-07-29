@@ -38,6 +38,20 @@ public class Rq {
         }
     }
 
+    public long getLongParam(String paramName, long defaultValue) {
+        String value = req.getParameter(paramName);
+
+        if (value == null) {
+            return defaultValue;
+        }
+
+        try {
+            return Long.parseLong(value);
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
     public void print(String str){
         try {
             resp.getWriter().append(str);
