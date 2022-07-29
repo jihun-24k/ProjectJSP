@@ -118,4 +118,8 @@ public class ArticleController {
         }
         rq.successJson(listDtos);
     }
+
+    public void showListAuto(Rq rq) {
+        rq.view("usr/article/listAuto");
+    }
 }
