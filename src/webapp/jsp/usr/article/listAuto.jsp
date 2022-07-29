@@ -6,11 +6,12 @@
 <script>
 let Articles__lastId = 0;
 function Articles__loadMore() {
-    fetch(`/usr/article/getArticles/free?fromId=${Articles__lastId}`)
+    fetch(`/usr/article/getArticles/free?fromId=\${Articles__lastId}`)
         .then(data => data.json())
         .then(responseData => {
-            for ( const key in responseData.datum ) {
-                const article = responseData.datum[key];
+            const articles = responseData.datum;
+            for ( const key in articles ) {
+                const article = articles[key];
                 const html = `
                     <li class = "flex">
                     <a class="w-[40px] hover:underline hover:text-[red]" href="/usr/article/detail/free/\${article.id}">\${article.id}</a>
@@ -21,6 +22,10 @@ function Articles__loadMore() {
                 `;
 
                 $('.articles').append(html);
+
+                if (articles.length > 0){
+                    Articles__lastId = articles[articles.length - 1].id;
+                }
             }
         });
 }
