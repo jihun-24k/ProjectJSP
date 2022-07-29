@@ -12,9 +12,6 @@ public class ArticleController {
     }
 
     public void showList(Rq rq){
-        List<ArticleDto> listDtos = articleService.findAll();
-
-        rq.setAtt("articles", listDtos);
         rq.view("usr/article/list");
     }
 
@@ -117,9 +114,5 @@ public class ArticleController {
             listDtos = articleService.findIdGreaterThan(fromId);
         }
         rq.successJson(listDtos);
-    }
-
-    public void showListAuto(Rq rq) {
-        rq.view("usr/article/listAuto");
     }
 }
