@@ -22,11 +22,12 @@ function Articles__loadMore() {
                 `;
 
                 $('.articles').append(html);
-
-                if (articles.length > 0){
-                    Articles__lastId = articles[articles.length - 1].id;
-                }
             }
+            if (articles.length > 0){
+                Articles__lastId = articles[articles.length - 1].id;
+            }
+            //Articles__loadMore(); // 즉시 실행
+            setTimeout(Articles__loadMore, 3000); // Articles__loadMore(); 를 3초 뒤에 수행
         });
 }
 </script>
@@ -37,10 +38,7 @@ function Articles__loadMore() {
 
         <ul class="articles mt-5">
             <!-- 이 부분에 자바스크립트를 통해서 HTML을 채우겠습니다. -->
-
         </ul>
-        <hr class="mt-3 mb-3">
-        <button class="btn btn-sm" onclick="Articles__loadMore();">불러오기</button>
     </div>
 </section>
 
