@@ -41,14 +41,14 @@ public class ArticleController {
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
-            rq.print("번호를 입력해주세요.");
+            rq.historyBack("번호를 입력해주세요.");
             return;
         }
 
         ArticleDto findDto = articleService.findById(id);
 
         if (findDto == null) {
-            rq.print("해당 글이 존재하지 않습니다.");
+            rq.historyBack("해당 글이 존재하지 않습니다.");
             return;
         }
         rq.setAtt("article",findDto);
@@ -58,12 +58,12 @@ public class ArticleController {
     public void showDelete(Rq rq){
         long id = rq.getLongPathValueByIndex(1, 0);
         if (id == 0) {
-            rq.println("번호를 입력해주세요.");
+            rq.historyBack("번호를 입력해주세요.");
             return;
         }
         ArticleDto articleDto = articleService.findById(id);
         if (articleDto == null) {
-            rq.println("해당 글이 존재하지 않습니다.");
+            rq.historyBack("해당 글이 존재하지 않습니다.");
             return;
         }
 
@@ -76,14 +76,14 @@ public class ArticleController {
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
-            rq.print("번호를 입력해주세요.");
+            rq.historyBack("번호를 입력해주세요.");
             return;
         }
 
         ArticleDto modifyDto = articleService.findById(id);
 
         if (modifyDto == null) {
-            rq.print("해당 글이 존재하지 않습니다.");
+            rq.historyBack("해당 글이 존재하지 않습니다.");
             return;
         }
         rq.setAtt("article",modifyDto);
@@ -92,6 +92,19 @@ public class ArticleController {
 
     public void doModify(Rq rq){
         long id = rq.getLongPathValueByIndex(1, 0);
+
+        if (id == 0) {
+            rq.historyBack("번호를 입력해주세요.");
+            return;
+        }
+
+        ArticleDto articleDto = articleService.findById(id);
+
+        if (articleDto == null) {
+            rq.historyBack("해당 글이 존재하지 않습니다.");
+            return;
+        }
+
         String title = rq.getParam("title", "");
         String body = rq.getParam("body","");
 
