@@ -27,6 +27,10 @@ public class ChatService {
         return chatRepository.write(title, body);
     }
 
+    public void modify(long id, String title, String body) {
+        chatRepository.modify(id,title,body);
+    }
+
     public void delete(long id) {
     }
 }

@@ -66,10 +66,21 @@ public class ChatController {
     }
 
     public void doModifyRoom(Rq rq) {
+        long id = rq.getLongPathValueByIndexForChat(1, 0);
+        if (id == 0) {
+            rq.historyBack("번호를 입력해주세요.");
+            return;
+        }
+        ChatRoomDto modifyDto = chatService.findById(id);
+
+        if (modifyDto == null) {
+            rq.historyBack("해당 채팅방이 존재하지 않습니다.");
+            return;
+        }
         String title = rq.getParam("title", "");
         String body = rq.getParam("body","");
 
-        long id = chatService.write(title, body);
+        chatService.modify(id,title, body);
         rq.replace("/usr/chat/room/%d".formatted(id), "%d번 채팅방이 수정 되었습니다.".formatted(id));
     }
 

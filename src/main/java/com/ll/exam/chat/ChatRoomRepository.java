@@ -26,8 +26,8 @@ public class ChatRoomRepository {
     }
 
     public static ChatRoomDto findById(long id) {
-        for (ChatRoomDto room : chatRoomDtos){
-            if (room.getId() == id){
+        for (ChatRoomDto room : chatRoomDtos) {
+            if (room.getId() == id) {
                 return room;
             }
         }
@@ -46,9 +46,15 @@ public class ChatRoomRepository {
     }
 
     public static long write(String title, String body) {
-        long id  = ++lastId;
-        ChatRoomDto newDto = new ChatRoomDto(id,title,body);
+        long id = ++lastId;
+        ChatRoomDto newDto = new ChatRoomDto(id, title, body);
         chatRoomDtos.add(newDto);
         return id;
+    }
+
+    public static void modify(long id, String title, String body) {
+        ChatRoomDto modiDto = findById(id);
+        modiDto.setTitle(title);
+        modiDto.setBody(body);
     }
 }
