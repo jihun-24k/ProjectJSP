@@ -26,4 +26,7 @@ public class ChatService {
     public long write(String title, String body) {
         return chatRepository.write(title, body);
     }
+
+    public void delete(long id) {
+    }
 }

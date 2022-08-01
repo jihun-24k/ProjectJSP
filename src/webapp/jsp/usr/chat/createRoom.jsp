@@ -2,7 +2,7 @@
 <%@ include file="../common/head.jspf"%>
 
 <script>
- function ArticleSave__submitForm(form) {
+ function RoomSave__submitForm(form) {
      form.title.value = form.title.value.trim();
      if ( form.title.value.length == 0 ) {
          alert('제목을 입력해주세요.');
@@ -22,7 +22,7 @@
 <section>
     <div class="container px-3 mx-auto mt-5">
         <h1 class="font-bold text-lg">채팅방 작성</h1>
-         <form method="POST"  onsubmit="ArticleSave__submitForm(this); return false;">
+         <form method="POST"  onsubmit="RoomSave__submitForm(this); return false;">
              <div class="flex gap-3 mt-3">
                  <span>제목</span>
                  <div>

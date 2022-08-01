@@ -114,11 +114,33 @@ public class Rq {
             return defaultValue;
         }
     }
+    public long getLongPathValueByIndexForChat(int idx, int defaultValue) {
+        String value = getPathValueByIndexForChat(idx,null);
+
+        if (value == null){
+            return defaultValue;
+        }
+
+        try{
+            return Long.parseLong(value);
+        }
+        catch (NumberFormatException e){
+            return defaultValue;
+        }
+    }
 
     public String getPathValueByIndex(int idx, String defaultValue){
         String[] urlBits = getPath().split("/");
         try{
             return urlBits[4+idx];
+        }catch (ArrayIndexOutOfBoundsException e){
+            return defaultValue;
+        }
+    }
+    public String getPathValueByIndexForChat(int idx, String defaultValue){
+        String[] urlBits = getPath().split("/");
+        try{
+            return urlBits[3+idx];
         }catch (ArrayIndexOutOfBoundsException e){
             return defaultValue;
         }

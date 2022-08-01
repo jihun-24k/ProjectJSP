@@ -18,7 +18,7 @@ public class ChatController {
     }
 
     public void showRoom(Rq rq) {
-        long id = rq.getLongPathValueByIndex(1, 0);
+        long id = rq.getLongPathValueByIndexForChat(1, 0);
 
         if (id == 0) {
             rq.historyBack("번호를 입력해주세요.");
@@ -31,7 +31,7 @@ public class ChatController {
             rq.historyBack("해당 채팅방이 존재하지 않습니다.");
             return;
         }
-        rq.setAtt("chat",findDto);
+        rq.setAtt("room",findDto);
         rq.view("usr/chat/room");
     }
 
@@ -40,7 +40,7 @@ public class ChatController {
     }
 
     public void showModifyRoom(Rq rq) {
-        long id = rq.getLongPathValueByIndex(1, 0);
+        long id = rq.getLongPathValueByIndexForChat(1, 0);
 
         if (id == 0) {
             rq.historyBack("번호를 입력해주세요.");
@@ -53,7 +53,7 @@ public class ChatController {
             rq.historyBack("해당 채팅방이 존재하지 않습니다.");
             return;
         }
-        rq.setAtt("chat",modifyDto);
+        rq.setAtt("room",modifyDto);
         rq.view("usr/chat/modifyRoom");
     }
 
@@ -77,6 +77,20 @@ public class ChatController {
     }
 
     public void deleteRoom(Rq rq) {
+        long id = rq.getLongPathValueByIndexForChat(1, 0);
+        if (id == 0) {
+            rq.historyBack("번호를 입력해주세요.");
+            return;
+        }
+        ChatRoomDto deleteDto = chatService.findById(id);
+
+        if (deleteDto == null) {
+            rq.historyBack("해당 채팅방이 존재하지 않습니다.");
+            return;
+        }
+
+        chatService.delete(id);
+        rq.replace("/usr/chat/roomList", "%d번 게시물이 삭제되었습니다.".formatted(id));
     }
 
     public void getRooms(Rq rq){
