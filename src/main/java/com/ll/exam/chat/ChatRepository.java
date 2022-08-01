@@ -34,4 +34,11 @@ public class ChatRepository {
                 .filter(articleDto -> articleDto.getId() > fromId)
                 .collect(Collectors.toList());
     }
+
+    public long write(String title, String body) {
+        long id  = ++lastId;
+        ChatRoomDto newDto = new ChatRoomDto(id,title,body);
+        chatRoomDtos.add(newDto);
+        return id;
+    }
 }

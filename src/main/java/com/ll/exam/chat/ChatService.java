@@ -22,4 +22,8 @@ public class ChatService {
     public List<ChatRoomDto> findIdGreaterThan(long fromId) {
         return chatRepository.findIdGreaterThan(fromId);
     }
+
+    public long write(String title, String body) {
+        return chatRepository.write(title, body);
+    }
 }
