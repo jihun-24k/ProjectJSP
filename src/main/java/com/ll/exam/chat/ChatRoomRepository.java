@@ -41,7 +41,7 @@ public class ChatRoomRepository {
     public List<ChatRoomDto> findIdGreaterThan(long fromId) {
         return chatRoomDtos
                 .stream()
-                .filter(articleDto -> articleDto.getId() > fromId)
+                .filter(chatRoomDto -> chatRoomDto.getId() > fromId)
                 .collect(Collectors.toList());
     }
 

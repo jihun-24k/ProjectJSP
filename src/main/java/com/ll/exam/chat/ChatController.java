@@ -57,9 +57,6 @@ public class ChatController {
         rq.view("usr/chat/modifyRoom");
     }
 
-    public void doWriteMsg(Rq rq) {
-    }
-
     public void doCreateRoom(Rq rq) {
         String title = rq.getParam("title", "");
         String body = rq.getParam("body","");
@@ -105,5 +102,8 @@ public class ChatController {
             listDtos = chatService.findIdGreaterThan(fromId);
         }
         rq.successJson(listDtos);
+    }
+
+    public void doWriteMsg(Rq rq) {
     }
 }
