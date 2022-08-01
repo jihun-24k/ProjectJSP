@@ -32,5 +32,6 @@ public class ChatService {
     }
 
     public void delete(long id) {
+        chatRepository.delete(id);
     }
 }

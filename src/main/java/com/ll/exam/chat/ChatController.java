@@ -91,7 +91,6 @@ public class ChatController {
             return;
         }
         ChatRoomDto deleteDto = chatService.findById(id);
-
         if (deleteDto == null) {
             rq.historyBack("해당 채팅방이 존재하지 않습니다.");
             return;

@@ -37,6 +37,7 @@ public class DispatchServlet extends HttpServlet {
                     case "/usr/chat/createRoom" -> chatController.showCreateRoom(rq);
                     case "/usr/chat/modifyRoom"-> chatController.showModifyRoom(rq);
                     case "/usr/chat/getRooms" -> chatController.getRooms(rq);
+                    case "/usr/chat/deleteRoom" -> chatController.deleteRoom(rq);
                     // member uri
                     case "/usr/member/login" -> memberController.showLogin(rq);
 
@@ -51,11 +52,6 @@ public class DispatchServlet extends HttpServlet {
                     case "/usr/chat/writeMessage" -> chatController.doWriteMsg(rq);
                     case "/usr/chat/createRoom" -> chatController.doCreateRoom(rq);
                     case "/usr/chat/modifyRoom" -> chatController.doModifyRoom(rq);
-                }
-            }
-            case "DELETE" ->{
-                switch (rq.getActionPath()){
-                    case "usr/chat/deleteRoom" -> chatController.deleteRoom(rq);
                 }
             }
         }

@@ -57,4 +57,9 @@ public class ChatRoomRepository {
         modiDto.setTitle(title);
         modiDto.setBody(body);
     }
+
+    public void delete(long id) {
+        ChatRoomDto deleteDto = findById(id);
+        chatRoomDtos.remove(deleteDto);
+    }
 }
