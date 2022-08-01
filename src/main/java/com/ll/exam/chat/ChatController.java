@@ -1,7 +1,10 @@
 package com.ll.exam.chat;
 
 import com.ll.exam.Rq;
+import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.chat.dto.ChatRoomDto;
+
+import java.util.List;
 
 public class ChatController {
     private ChatService chatService;
@@ -64,5 +67,19 @@ public class ChatController {
     }
 
     public void deleteRoom(Rq rq) {
+    }
+
+    public void getRooms(Rq rq){
+        long fromId = rq.getLongParam("fromId", -1);
+
+        List<ArticleDto> listDtos = null;
+
+        if ( fromId == -1 ) {
+            listDtos = chatService.findAll();
+        }
+        else {
+            listDtos = chatService.findIdGreaterThan(fromId);
+        }
+        rq.successJson(listDtos);
     }
 }

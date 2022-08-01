@@ -36,6 +36,7 @@ public class DispatchServlet extends HttpServlet {
                     case "/usr/chat/room" -> chatController.showRoom(rq);
                     case "/usr/chat/createRoom" -> chatController.showCreateRoom(rq);
                     case "/usr/chat/modifyRoom"-> chatController.showModifyRoom(rq);
+                    case "/usr/chat/getRooms" -> chatController.getRooms(rq);
                     // member uri
                     case "/usr/member/login" -> memberController.showLogin(rq);
 
