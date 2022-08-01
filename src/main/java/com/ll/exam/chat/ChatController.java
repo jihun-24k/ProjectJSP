@@ -69,6 +69,11 @@ public class ChatController {
     }
 
     public void doModifyRoom(Rq rq) {
+        String title = rq.getParam("title", "");
+        String body = rq.getParam("body","");
+
+        long id = chatService.write(title, body);
+        rq.replace("/usr/chat/room/%d".formatted(id), "%d번 채팅방이 수정 되었습니다.".formatted(id));
     }
 
     public void deleteRoom(Rq rq) {
