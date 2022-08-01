@@ -41,6 +41,8 @@
   <div class="container p-3 mx-auto flex border-b-2 mt-3">
     <a href="/usr/article/list/free" class="hover:underline hover:text-[red] mr-auto">로고</a>
     <ul class="flex gap-3">
+      <li><a href="/usr/chat/createRoom" class="hover:underline hover:text-[red]">채팅방 생성</a></li>
+      <li><a href="/usr/chat/roomList" class="hover:underline hover:text-[red]">채팅방 리스트</a></li>
       <li><a href="/usr/article/write/free" class="hover:underline hover:text-[red]">자유 게시물 작성</a></li>
       <li><a href="/usr/article/list/free" class="hover:underline hover:text-[red]">자유 게시물 리스트</a></li>
       <i class="fa-solid fa-circle-half-stroke"></i>
