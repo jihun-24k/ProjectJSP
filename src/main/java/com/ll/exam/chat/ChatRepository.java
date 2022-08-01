@@ -5,6 +5,7 @@ import com.ll.exam.chat.dto.ChatRoomDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ChatRepository {
     private static List<ChatRoomDto> chatRoomDtos;
@@ -13,6 +14,15 @@ public class ChatRepository {
     static {
         chatRoomDtos = new ArrayList<>();
         lastId = 0;
+        makeTestData();
+    }
+
+    private static void makeTestData() {
+        IntStream.rangeClosed(1, 10).forEach(id -> {
+            String title = "채팅방%d".formatted(id);
+            String body = "내용%d".formatted(id);
+            write(title, body);
+        });
     }
 
     public static ChatRoomDto findById(long id) {
@@ -35,7 +45,7 @@ public class ChatRepository {
                 .collect(Collectors.toList());
     }
 
-    public long write(String title, String body) {
+    public static long write(String title, String body) {
         long id  = ++lastId;
         ChatRoomDto newDto = new ChatRoomDto(id,title,body);
         chatRoomDtos.add(newDto);
