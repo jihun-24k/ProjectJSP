@@ -1,5 +1,37 @@
 package com.ll.exam.chat;
 
-public class ChatRepository {
+import com.ll.exam.chat.dto.ChatRoomDto;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ChatRepository {
+    private static List<ChatRoomDto> chatRoomDtos;
+    private static long lastId;
+
+    static {
+        chatRoomDtos = new ArrayList<>();
+        lastId = 0;
+    }
+
+    public static ChatRoomDto findById(long id) {
+        for (ChatRoomDto room : chatRoomDtos){
+            if (room.getId() == id){
+                return room;
+            }
+        }
+        return null;
+    }
+
+    public List<ChatRoomDto> findAll() {
+        return chatRoomDtos;
+    }
+
+    public List<ChatRoomDto> findIdGreaterThan(long fromId) {
+        return chatRoomDtos
+                .stream()
+                .filter(articleDto -> articleDto.getId() > fromId)
+                .collect(Collectors.toList());
+    }
 }

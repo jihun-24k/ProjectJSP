@@ -1,6 +1,5 @@
 package com.ll.exam.chat;
 
-import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.chat.dto.ChatRoomDto;
 
 import java.util.List;
@@ -12,12 +11,15 @@ public class ChatService {
         chatRepository = new ChatRepository();
     }
 
-    public static ChatRoomDto findById(long id) {
+    public ChatRoomDto findById(long id) {
+        return chatRepository.findById(id);
     }
 
-    public List<ArticleDto> findAll() {
+    public List<ChatRoomDto> findAll() {
+        return chatRepository.findAll();
     }
 
-    public List<ArticleDto> findIdGreaterThan(long fromId) {
+    public List<ChatRoomDto> findIdGreaterThan(long fromId) {
+        return chatRepository.findIdGreaterThan(fromId);
     }
 }

@@ -25,7 +25,7 @@ public class ChatController {
             return;
         }
 
-        ChatRoomDto findDto = ChatService.findById(id);
+        ChatRoomDto findDto = chatService.findById(id);
 
         if (findDto == null) {
             rq.historyBack("해당 채팅방이 존재하지 않습니다.");
@@ -72,7 +72,7 @@ public class ChatController {
     public void getRooms(Rq rq){
         long fromId = rq.getLongParam("fromId", -1);
 
-        List<ArticleDto> listDtos = null;
+        List<ChatRoomDto> listDtos = null;
 
         if ( fromId == -1 ) {
             listDtos = chatService.findAll();
