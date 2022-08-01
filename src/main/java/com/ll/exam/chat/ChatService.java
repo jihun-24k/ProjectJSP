@@ -5,33 +5,38 @@ import com.ll.exam.chat.dto.ChatRoomDto;
 import java.util.List;
 
 public class ChatService {
-    private ChatRoomRepository chatRepository;
+    private ChatRoomRepository chatRoomRepository;
+    private ChatMsgRepository chatMsgRepository;
     
     public ChatService(){
-        chatRepository = new ChatRoomRepository();
+        chatRoomRepository = new ChatRoomRepository();
     }
 
-    public ChatRoomDto findById(long id) {
-        return chatRepository.findById(id);
+    public ChatRoomDto findRoomById(long id) {
+        return chatRoomRepository.findById(id);
     }
 
     public List<ChatRoomDto> findAll() {
-        return chatRepository.findAll();
+        return chatRoomRepository.findAll();
     }
 
     public List<ChatRoomDto> findIdGreaterThan(long fromId) {
-        return chatRepository.findIdGreaterThan(fromId);
+        return chatRoomRepository.findIdGreaterThan(fromId);
     }
 
     public long write(String title, String body) {
-        return chatRepository.write(title, body);
+        return chatRoomRepository.write(title, body);
     }
 
     public void modify(long id, String title, String body) {
-        chatRepository.modify(id,title,body);
+        chatRoomRepository.modify(id,title,body);
     }
 
     public void delete(long id) {
-        chatRepository.delete(id);
+        chatRoomRepository.delete(id);
+    }
+
+    public long writeMsg(long roomId, String body) {
+        return chatMsgRepository.write(roomId, body);
     }
 }
