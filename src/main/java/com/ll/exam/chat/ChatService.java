@@ -5,10 +5,10 @@ import com.ll.exam.chat.dto.ChatRoomDto;
 import java.util.List;
 
 public class ChatService {
-    private ChatRepository chatRepository;
+    private ChatRoomRepository chatRepository;
     
     public ChatService(){
-        chatRepository = new ChatRepository();
+        chatRepository = new ChatRoomRepository();
     }
 
     public ChatRoomDto findById(long id) {
