@@ -49,4 +49,25 @@ public class ChatMsgRepository {
                 .filter(chatMessageDto -> chatMessageDto.getId() > fromId)
                 .collect(Collectors.toList());
     }
+
+    public ChatMsgDto findById(long id) {
+        for (ChatMsgDto chatMessageDto : chatMsgDtos) {
+            if (chatMessageDto.getId() == id) {
+                return chatMessageDto;
+            }
+        }
+
+        return null;
+    }
+
+
+    public void deleteMessage(long id) {
+        ChatMsgDto chatMessageDto = findById(id);
+
+        if (chatMessageDto == null) {
+            return;
+        }
+
+        chatMsgDtos.remove(chatMessageDto);
+    }
 }
