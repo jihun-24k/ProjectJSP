@@ -4,6 +4,7 @@ import com.ll.exam.chat.dto.ChatMsgDto;
 import com.ll.exam.chat.dto.ChatRoomDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ChatService {
     private ChatRoomRepository chatRoomRepository;
@@ -44,5 +45,9 @@ public class ChatService {
 
     public List<ChatMsgDto> findMessagesByRoomId(long id) {
         return chatMsgRepository.findByRoomId(id);
+    }
+
+    public List<ChatMsgDto> findMessagesByRoomIdGreaterThan(long roomId, long fromId) {
+        return chatMsgRepository.findByRoomIdGreaterThan(roomId, fromId);
     }
 }
