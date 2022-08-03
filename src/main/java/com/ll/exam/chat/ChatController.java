@@ -136,7 +136,7 @@ public class ChatController {
             return;
         }
 
-        chatService.writeMsg(roomId, body);
-        rq.replace("/usr/chat/room/%d".formatted(roomId), "메시지가 입력됐습니다.");
+        long newChatMsgId = chatService.writeMsg(roomId, body);
+        rq.successJson(newChatMsgId);
     }
 }

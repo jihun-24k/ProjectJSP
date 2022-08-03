@@ -17,7 +17,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/apache-jstl -->
         <!-- jstl dependency -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
